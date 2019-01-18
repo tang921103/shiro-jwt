@@ -76,10 +76,15 @@ public class ShiroConfiguration {
         Map<String, Filter> filterMap = new LinkedHashMap<>();
         filterMap.put("jwt",new JWTFilter());
         shiroFilterFactoryBean.setFilters(filterMap);
+        System.out.println("++++++++++++");
+        System.out.println(shiroFilterFactoryBean.getFilters());
+        System.out.println("_____________");
+
         //自定义过滤条件
         Map<String,String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/login","anon");
         filterChainDefinitionMap.put("/main","anon");
+        filterChainDefinitionMap.put("/js/*","anon");
 //        filterChainDefinitionMap.put("/hello","roles[admin]");
         filterChainDefinitionMap.put("/**","authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);

@@ -3,14 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>登录</title>
+    <script type="text/javascript" src="/js/axios.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/vue.js"></script>
 </head>
 <body>
-    <div style="width:100px;height:50px;">
-        <form method="post" action="login">
-            username:<input type="text" name="username"/><br>
-            password:<input type="text" name="password"/><br>
-            <input type="submit" value="commit"><br>
-        </form>
+    <!--<div style="width:100px;height:50px;">-->
+        <!--<form method="post" action="login">-->
+            <!--username:<input type="text" name="username"/><br>-->
+            <!--password:<input type="text" name="password"/><br>-->
+            <!--<input type="submit" value="commit"><br>-->
+        <!--</form>-->
+    <!--</div>-->
+
+    <div style="width:100px;height:50px;" id="app">
+        <div >
+            username:<input type="text" v-model="username"/><br>
+            password:<input type="text" v-model="password"/><br>
+            <input type="button" @click="login" value="commit"><br>
+        </div>
     </div>
 </body>
+<script>
+    var app = new Vue({
+        el:'#app',
+        data:{
+            username:'',
+            password:'',
+        },
+        methods:{
+            login:function(){
+                var url = "http://localhost:8181/login";
+                var params = new URLSearchParams();
+                params.append("username",this.username);
+                params.append("password",this.password);
+                axios.post(url,params).then(function(response){
+                    console.log(response);
+                }).catch(function(reason){
+                    console.log(reason);
+                })
+            }
+
+        }
+    })
+</script>
 </html>

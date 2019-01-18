@@ -20,7 +20,7 @@ import java.util.Map;
 
 @Controller
 public class UserController {
-    public  static final Logger logger = LoggerFactory.getLogger(UserController.class);
+    public static final Logger logger = LoggerFactory.getLogger(UserController.class);
     @RequestMapping("/main")
     public String showLogin(){
         return "login";
