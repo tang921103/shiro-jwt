@@ -67,7 +67,7 @@ public class ShiroConfiguration {
         //注入安全管理器securityManager
         shiroFilterFactoryBean.setSecurityManager(securityManager());
         //没有登录时跳转
-        shiroFilterFactoryBean.setLoginUrl("/index");
+        shiroFilterFactoryBean.setLoginUrl("/main");
         //登录成功
         shiroFilterFactoryBean.setSuccessUrl("/success");
         //没有权限时访问
@@ -79,15 +79,19 @@ public class ShiroConfiguration {
         System.out.println("++++++++++++");
         System.out.println(shiroFilterFactoryBean.getFilters());
         System.out.println("_____________");
-
         //自定义过滤条件
         Map<String,String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/login","anon");
         filterChainDefinitionMap.put("/main","anon");
         filterChainDefinitionMap.put("/js/*","anon");
+        //注意：让所有的请求都通过我们的过滤器
+        filterChainDefinitionMap.put("/**","authcBasic");
 //        filterChainDefinitionMap.put("/hello","roles[admin]");
-        filterChainDefinitionMap.put("/**","authc");
+//        filterChainDefinitionMap.put("/**","authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+        System.out.println("++++++++++++");
+        System.out.println(shiroFilterFactoryBean.getFilterChainDefinitionMap());
+        System.out.println("_____________");
         return shiroFilterFactoryBean;
     }
 

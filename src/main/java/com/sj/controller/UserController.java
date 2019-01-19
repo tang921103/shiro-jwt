@@ -55,4 +55,8 @@ public class UserController {
         }
         return map;
     }
+    @RequestMapping("/index")
+    public String index(){
+        return "index";
+    }
 }
