@@ -81,11 +81,11 @@ public class ShiroConfiguration {
         System.out.println("_____________");
         //自定义过滤条件
         Map<String,String> filterChainDefinitionMap = new LinkedHashMap<>();
-        filterChainDefinitionMap.put("/login","anon");
+//        filterChainDefinitionMap.put("/login","anon");
         filterChainDefinitionMap.put("/main","anon");
         filterChainDefinitionMap.put("/js/*","anon");
         //注意：让所有的请求都通过我们的过滤器
-        filterChainDefinitionMap.put("/**","authcBasic");
+        filterChainDefinitionMap.put("/**","jwt");
 //        filterChainDefinitionMap.put("/hello","roles[admin]");
 //        filterChainDefinitionMap.put("/**","authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
